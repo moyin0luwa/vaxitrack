@@ -10,6 +10,9 @@ dotenv.config();
 
 connectDB();
 
+// Middleware
+app.use(express.json());
+
 app.use("/vaxitrack/admin", adminRouter);
 app.use("/vaxitrack/user", userRouter);
 
