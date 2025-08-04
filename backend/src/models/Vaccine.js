@@ -23,7 +23,7 @@ const vaccineSchema = new mongoose.Schema(
       min: 1,
     },
     dosingInterval: {
-      type: String,
+      type: Number,
       trim: true,
     },
     ageGroup: {
