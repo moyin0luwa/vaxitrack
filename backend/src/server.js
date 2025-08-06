@@ -5,7 +5,6 @@ import vaccineRouter from './routes/vaccineRoutes.js';
 import userVaccinationRouter from './routes/userVaccinationRecordRoutes.js';
 import { connectDB } from './config/db.js';
 import dotenv from 'dotenv';
-
 const PORT = process.env.PORT || 7000;
 const app = express(); 
 dotenv.config();
@@ -23,4 +22,3 @@ app.use("/vaxitrack/", userVaccinationRouter);
 app.listen(PORT , () => {
   console.log("Vaxitrack Server is running on PORT:", PORT);
 });
-

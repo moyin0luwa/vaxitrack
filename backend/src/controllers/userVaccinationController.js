@@ -1,6 +1,8 @@
 import VaccinationRecord from '../models/UserVaccinationRecord.js';
 import Vaccine from '../models/Vaccine.js';
 import User from '../models/User.js';
+import { sendVaccinationReminder } from '../services/vaxiSMS.js';
+
 
 export const createVaccinationRecord = async (req, res) => {
   try {
@@ -65,6 +67,13 @@ const nextDoseDue = dosingSchedule.length > 1 ? dosingSchedule[1] : null;
 
     await newRecord.save();
 
+    // Send SMS Reminder
+    await sendVaccinationReminder({
+      phoneNumber: user.phoneNumber,
+      patientName: fullName,
+      vaccineName: vaccine.vaccineName,
+      nextDoseDue,
+    });
 
     return res.status(201).json({
       success: true,
