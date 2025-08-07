@@ -2,6 +2,7 @@ import express from 'express';
 import adminRouter from './routes/adminRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import vaccineRouter from './routes/vaccineRoutes.js';
+import authRouter from './routes/authRoutes.js';
 import userVaccinationRouter from './routes/userVaccinationRecordRoutes.js';
 import { connectDB } from './config/db.js';
 import dotenv from 'dotenv';
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/vaxitrack/admin", adminRouter);
 app.use("/vaxitrack/user", userRouter);
 app.use("/vaxitrack/vaccine", vaccineRouter);
+app.use("/vaxitrack/auth", authRouter);
 app.use("/vaxitrack/", userVaccinationRouter);
 
 app.listen(PORT , () => {
