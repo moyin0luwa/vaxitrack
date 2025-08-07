@@ -7,12 +7,15 @@ import { sendVaccinationReminder } from '../services/vaxiSMS.js';
 export const createVaccinationRecord = async (req, res) => {
   try {
     const { fullName, vaccineName, dateAdministered } = req.body;
-
+    console.log("Received data:", req.body);
     // Find user by fullName
     const user = await User.findOne({ fullName });
+    console.log("User found:", user);
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found.' });
+      console.log("User not found:", user);
     }
+
 
     // Find vaccine by vaccineName
     const vaccine = await Vaccine.findOne({ vaccineName });

@@ -6,6 +6,8 @@ import authRouter from './routes/authRoutes.js';
 import userVaccinationRouter from './routes/userVaccinationRecordRoutes.js';
 import { connectDB } from './config/db.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
+
 const PORT = process.env.PORT || 7000;
 const app = express(); 
 dotenv.config();
@@ -13,7 +15,13 @@ dotenv.config();
 connectDB();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
+
 
 app.use("/vaxitrack/admin", adminRouter);
 app.use("/vaxitrack/user", userRouter);

@@ -12,7 +12,7 @@ const sms = vaxitalking.SMS;
 
 export const sendVaccinationReminder = async ({ phoneNumber, patientName, vaccineName, nextDoseDue }) => {
   const formattedDate = new Date(nextDoseDue).toDateString();
-  const message = `Dear ${patientName}, your next dose of ${vaccineName} is due on ${formattedDate}. Please take note of this so as not to miss your appointment.`;
+  const message = `Dear ${patientName}, your child's next dose of ${vaccineName} is due on ${formattedDate}. Please take note of this so as not to miss your appointment.`;
 
   try {
     const response = await sms.send({
